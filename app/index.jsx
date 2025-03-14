@@ -13,7 +13,6 @@ export default function Index() {
   const [qrData, setQrData] = useState('');
   const [qrList, setQrList] = useState([]);
 
-  // Load saved QR list from AsyncStorage when component mounts
   useEffect(() => {
     const loadQrList = async () => {
       try {
@@ -28,7 +27,6 @@ export default function Index() {
     loadQrList();
   }, []);
 
-  // Save QR list to AsyncStorage whenever it changes
   useEffect(() => {
     const saveQrList = async () => {
       try {
@@ -59,7 +57,6 @@ export default function Index() {
     setFacing((current) => (current === 'back' ? 'front' : 'back'));
   }
 
-  // Add timestamp when storing the scanned QR code
   const handleBarCodeScanned = ({ data }) => {
     setScanned(true);
     setQrData(data);
@@ -88,7 +85,6 @@ export default function Index() {
         onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
       />
 
-      {/* Floating button to flip camera */}
       <TouchableOpacity style={styles.flipButton} onPress={toggleCameraFacing}>
         <Ionicons name="camera-reverse" size={30} color="white" />
       </TouchableOpacity>
@@ -113,7 +109,6 @@ export default function Index() {
         </View>
       )}
 
-      {/* QR Code Counter */}
       <View style={styles.counterContainer}>
         <Text style={styles.counterText}>
           Total de QR Codes: {qrList.length}
